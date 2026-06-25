@@ -1,0 +1,9 @@
+# .github/metadata.yaml
+description: "Conforms the one-element Single container to Iterable, vending a single-shot Once iterator."
+topics:
+  - primitives
+  - iterator
+  - single
+homepage: "https://swift-institute.org"
+readme:
+  family: E

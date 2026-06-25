@@ -18,8 +18,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../swift-single-primitives"),
-        .package(path: "../swift-iterator-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-single-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-iterator-primitives.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -27,7 +27,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Single Primitives", package: "swift-single-primitives"),
                 .product(name: "Iterable", package: "swift-iterator-primitives"),
-                .product(name: "Once Primitives", package: "swift-iterator-primitives"),
+                .product(name: "Iterator Once Primitives", package: "swift-iterator-primitives"),
+                .product(name: "Iterator Chunk Primitives", package: "swift-iterator-primitives"),
             ]
         ),
         .testTarget(

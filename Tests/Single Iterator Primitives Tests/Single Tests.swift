@@ -1,5 +1,6 @@
-import Testing
+import Iterable
 import Single_Iterator_Primitives
+import Testing
 
 @Suite("Single Iterator Tests")
 struct SingleIteratorTests {
@@ -8,22 +9,22 @@ struct SingleIteratorTests {
 
 extension SingleIteratorTests.Unit {
     @Test
-    func `single vends a once iterator yielding its element`() {
+    func `single vends a span iterator yielding its element once`() {
         let single = Single(42)
-        var iterator = single.makeIterator()
-        #expect(iterator.next() == 42)
-        #expect(iterator.next() == nil)
+        var collected: [Int] = []
+        single.forEach { collected.append($0) }
+        #expect(collected == [42])
     }
 
     @Test
     func `makeIterator borrows, so the container stays multipass`() {
         let single = Single("x")
-        var first = single.makeIterator()
-        var second = single.makeIterator()
-        #expect(first.next() == "x")
-        #expect(first.next() == nil)
-        // The container was only borrowed, never consumed: a second iterator still yields.
-        #expect(second.next() == "x")
-        #expect(second.next() == nil)
+        // The container is only borrowed, never consumed: iterating twice both yield.
+        var first: [String] = []
+        single.forEach { first.append($0) }
+        var second: [String] = []
+        single.forEach { second.append($0) }
+        #expect(first == ["x"])
+        #expect(second == ["x"])
     }
 }
