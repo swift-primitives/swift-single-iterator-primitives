@@ -2,12 +2,12 @@ import Iterable
 import Single_Iterator_Primitives
 import Testing
 
-@Suite("Single Iterator Tests")
-struct SingleIteratorTests {
+@Suite
+struct `Single Tests` {
     @Suite struct Unit {}
 }
 
-extension SingleIteratorTests.Unit {
+extension `Single Tests`.Unit {
     @Test
     func `single vends a span iterator yielding its element once`() {
         let single = Single(42)
