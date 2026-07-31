@@ -5,6 +5,8 @@ import Testing
 @Suite
 struct `Single Tests` {
     @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
 }
 
 extension `Single Tests`.Unit {
