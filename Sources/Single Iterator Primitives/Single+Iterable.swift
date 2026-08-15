@@ -21,12 +21,16 @@ extension Single: @retroactive Iterable where Element: Copyable {
     // materialize adapter so `Iterable.Iterator` is a `__IteratorChunkProtocol`. `Single` is
     // Iterable-only (no Swift.Sequence/Sequenceable here), so no @_implements split is needed.
     /// The iterator `Single` vends: a single-shot `Iterator.Once` wrapped in the span-materializing adapter.
-    public typealias Iterator = Iterator_Primitive.Iterator.Materializing<Iterator_Primitive.Iterator.Once<Element>>
+    public typealias Iterator = Iterator_Primitive.Iterator.Materializing<
+        Iterator_Primitive.Iterator.Once<Element>
+    >
 
     /// Returns a single-shot iterator that yields a copy of the contained element exactly once.
     @inlinable
     @_lifetime(borrow self)
-    public borrowing func makeIterator() -> Iterator_Primitive.Iterator.Materializing<Iterator_Primitive.Iterator.Once<Element>> {
+    public borrowing func makeIterator()
+        -> Iterator_Primitive.Iterator.Materializing<Iterator_Primitive.Iterator.Once<Element>>
+    {
         Iterator_Primitive.Iterator.Materializing(Iterator_Primitive.Iterator.Once(element))
     }
 }
