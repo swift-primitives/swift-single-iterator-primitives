@@ -21,7 +21,7 @@ extension `Single Tests`.Unit {
     @Test
     func `makeIterator borrows, so the container stays multipass`() {
         let single = Single("x")
-        // The container is only borrowed, never consumed: iterating twice both yield.
+
         var first: [String] = []
         single.forEach { first.append($0) }
         var second: [String] = []
